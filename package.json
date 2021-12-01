@@ -1,0 +1,17 @@
+{
+  "name": "advent-of-code-2021",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "rescript",
+    "clean": "rescript clean -with-deps",
+    "start": "rescript build -w"
+  },
+  "keywords": [
+    "rescript"
+  ],
+  "author": "Richard Wright <me@rbwrightjr91.dev>",
+  "license": "MIT",
+  "dependencies": {
+    "rescript": "*"
+  }
+}
