@@ -1,5 +1,5 @@
 let readInput = lazy({
-    Js.String.split("\n", Node.Fs.readFileAsUtf8Sync("data/01/input.txt"))
+    Js.String.split("\n", Node.Fs.readFileAsUtf8Sync("data/01/01-input.txt"))
 })
 
 let arr = Js.Array2.map(Lazy.force(readInput), e => Belt.Int.fromString(e))

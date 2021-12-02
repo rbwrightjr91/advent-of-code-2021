@@ -10,7 +10,7 @@ var CamlinternalLazy = require("rescript/lib/js/camlinternalLazy.js");
 var readInput = {
   LAZY_DONE: false,
   VAL: (function () {
-      return Fs.readFileSync("data/01/input.txt", "utf8").split("\n");
+      return Fs.readFileSync("data/01/01-input.txt", "utf8").split("\n");
     })
 };
 
