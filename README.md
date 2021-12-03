@@ -17,7 +17,7 @@ npm install
 ## Run
 
 ```sh
-node src/<filename>.bs.js
+node src/<filename>.bs.js <path_to_input>
 ```
 
 or
