@@ -19,3 +19,11 @@ npm install
 ```sh
 node src/<filename>.bs.js
 ```
+
+or
+
+```sh
+npm run day-XX[:test]
+```
+
+where XX is 01-25

@@ -4,7 +4,9 @@
   "scripts": {
     "build": "rescript",
     "clean": "rescript clean -with-deps",
-    "start": "rescript build -w"
+    "start": "rescript build -w",
+    "day-03": "node src/D03BinaryDiag.bs.js data/03/input.txt",
+    "day-03:test": "node src/D03BinaryDiag.bs.js data/03/test-input.txt"
   },
   "keywords": [
     "rescript"
