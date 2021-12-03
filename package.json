@@ -5,6 +5,10 @@
     "build": "rescript",
     "clean": "rescript clean -with-deps",
     "start": "rescript build -w",
+    "day-01": "node src/D01SonarSweep.bs.js data/01/input.txt",
+    "day-01:test": "node src/D01SonarSweep.bs.js data/01/test-input.txt",
+    "day-02": "node src/D02Dive.bs.js data/02/input.txt",
+    "day-02:test": "node src/D02Dive.bs.js data/02/test-input.txt",
     "day-03": "node src/D03BinaryDiag.bs.js data/03/input.txt",
     "day-03:test": "node src/D03BinaryDiag.bs.js data/03/test-input.txt"
   },

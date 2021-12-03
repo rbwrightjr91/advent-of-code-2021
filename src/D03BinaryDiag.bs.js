@@ -30,7 +30,7 @@ function encode(binaryString) {
             });
 }
 
-var encodedInput = input.map(encode);
+var encodedInput = CamlinternalLazy.force(readInput).map(encode);
 
 function sumVectors(encodedInput) {
   return encodedInput.reduce((function (el, acc) {
@@ -74,18 +74,19 @@ function getEpsilon(summed, numInputs) {
             });
 }
 
-function partOne(encodedInput) {
-  console.log("Day 3 - Part 1\n===============");
+function partOne(param) {
+  console.log("Day 03 - Part 1\n================");
   var summed = sumVectors(encodedInput);
   var gamma = getGamma(summed, encodedInput.length);
   var epsilon = getEpsilon(summed, encodedInput.length);
   var result = Math.imul(binaryToInt(gamma), binaryToInt(epsilon));
   console.log(result);
+  console.log("================\n");
   
 }
 
-function partTwo(encodedInput) {
-  console.log("\n\nDay 3 - Part 2\n===============");
+function partTwo(param) {
+  console.log("Day 03 - Part 1\n================");
   var o2 = encodedInput;
   var co2 = encodedInput;
   for(var i = 0; i < numBits; ++i){
@@ -111,12 +112,13 @@ function partTwo(encodedInput) {
   }
   var result = Math.imul(binaryToInt(Caml_array.get(o2, 0)), binaryToInt(Caml_array.get(co2, 0)));
   console.log(result);
+  console.log("================\n");
   
 }
 
-partOne(encodedInput);
+partOne(undefined);
 
-partTwo(encodedInput);
+partTwo(undefined);
 
 exports.readInput = readInput;
 exports.input = input;

@@ -5,7 +5,6 @@ let readInput = lazy {
 }
 
 let input = Lazy.force(readInput)
-// let inputSize = Js.Array2.length(input)
 let numBits = Js.String2.length(input[1])
 
 // given string representation of binary number, convert to array of integers
@@ -19,7 +18,7 @@ let encode = binaryString => {
   })
 }
 
-let encodedInput = Js.Array2.map(input, el => encode(el))
+let encodedInput = Js.Array2.map(Lazy.force(readInput), el => encode(el))
 
 let sumVectors = encodedInput => {
   let vectorAdd = (element, arr, i) => element + arr[i]
@@ -53,8 +52,8 @@ let getEpsilon = (summed, numInputs) => Js.Array2.map(summed, el => isLeastCommo
 
 /* * Part 1
  */
-let partOne = encodedInput => {
-  Js.log("Day 3 - Part 1\n===============")
+let partOne = () => {
+  Js.log("Day 03 - Part 1\n================")
 
   let summed = sumVectors(encodedInput)
 
@@ -64,12 +63,13 @@ let partOne = encodedInput => {
   let result = binaryToInt(gamma) * binaryToInt(epsilon)
 
   Js.log(result)
+  Js.log("================\n")
 }
 
 /* * Part 2
  */
-let partTwo = encodedInput => {
-  Js.log("\n\nDay 3 - Part 2\n===============")
+let partTwo = () => {
+  Js.log("Day 03 - Part 1\n================")
 
   let o2 = ref(encodedInput)
   let co2 = ref(encodedInput)
@@ -95,7 +95,8 @@ let partTwo = encodedInput => {
   let result = binaryToInt(o2.contents[0]) * binaryToInt(co2.contents[0])
 
   Js.log(result)
+  Js.log("================\n")
 }
 
-partOne(encodedInput)
-partTwo(encodedInput)
+partOne()
+partTwo()
