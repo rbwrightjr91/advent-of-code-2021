@@ -23,7 +23,7 @@ let parseBoards = input => {
       ->ignore
     } else {
       boards->Js.Array2.push(board.contents)->ignore
-      board.contents = board.contents->Js.Array2.filter(e => false)
+      board.contents = board.contents->Js.Array2.filter(_ => false)
     }
   }
 
@@ -74,6 +74,19 @@ let checkWinner = board => {
   }
 
   win.contents
+}
+
+let removeWinners = boards => {
+  let forRemoval = []
+  boards->Belt.Array.forEachWithIndex((i, board) => {
+    if checkWinner(board) {
+      forRemoval->Js.Array2.push(i)->ignore
+    }
+  })
+
+  for i in 0 to forRemoval->Belt.Array.size - 1 {
+    boards->Js.Array2.removeCountInPlace(~pos=forRemoval[i] - i, ~count=1)->ignore
+  }
 }
 
 let playRound = (num, boards) => {
@@ -149,16 +162,18 @@ let partTwo = () => {
 
   let lastDrawnNum = ref("-1")
 
-  while boards.contents->Belt.Array.size > 1 {
+  let break = ref(false)
+  while !break.contents && boards.contents->Belt.Array.size > 1 {
     lastDrawnNum.contents = switch drawOrder.contents->Js.Array2.pop {
     | Some(s) => s
     | None => "-1"
     }
 
-    let winner = playRound(lastDrawnNum.contents, boards.contents)
-    if winner >= 0 {
-      boards.contents->Js.Array2.removeCountInPlace(~pos=winner, ~count=1)->ignore
-    }
+    boards.contents->Belt.Array.forEach(board => {
+      markBoard(board, lastDrawnNum.contents)
+    })
+
+    boards.contents->removeWinners
   }
 
   lastDrawnNum.contents = switch drawOrder.contents->Js.Array2.pop {
@@ -168,7 +183,7 @@ let partTwo = () => {
 
   playRound(lastDrawnNum.contents, boards.contents)->ignore
 
-  Js.log(boards.contents[0]->parseResults(lastDrawnNum.contents))
+  Js.log2(boards.contents, boards.contents[0]->parseResults(lastDrawnNum.contents))
 
   Js.log("================\n")
 }

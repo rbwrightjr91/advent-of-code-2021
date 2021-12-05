@@ -34,7 +34,7 @@ function parseBoards(input) {
               }));
     } else {
       boards.push(board);
-      board = board.filter(function (e) {
+      board = board.filter(function (param) {
             return false;
           });
     }
@@ -97,6 +97,21 @@ function checkWinner(board) {
   return win.contents;
 }
 
+function removeWinners(boards) {
+  var forRemoval = [];
+  Belt_Array.forEachWithIndex(boards, (function (i, board) {
+          if (checkWinner(board)) {
+            forRemoval.push(i);
+            return ;
+          }
+          
+        }));
+  for(var i = 0 ,i_finish = forRemoval.length; i < i_finish; ++i){
+    boards.splice(Caml_array.get(forRemoval, i) - i | 0, 1);
+  }
+  
+}
+
 function playRound(num, boards) {
   var winner = {
     contents: -1
@@ -147,20 +162,22 @@ function partTwo(param) {
   var input = CamlinternalLazy.force(readInput);
   var drawOrder = parseDrawOrder(Belt_Array.slice(input, 0, 1));
   var boards = parseBoards(Belt_Array.sliceToEnd(input, 2));
-  var lastDrawnNum = "-1";
-  while(boards.contents.length > 1) {
+  var lastDrawnNum = {
+    contents: "-1"
+  };
+  var $$break = false;
+  while(!$$break && boards.contents.length > 1) {
     var s = drawOrder.contents.pop();
-    lastDrawnNum = s !== undefined ? s : "-1";
-    var winner = playRound(lastDrawnNum, boards.contents);
-    if (winner >= 0) {
-      boards.contents.splice(winner, 1);
-    }
-    
+    lastDrawnNum.contents = s !== undefined ? s : "-1";
+    Belt_Array.forEach(boards.contents, (function (board) {
+            return markBoard(board, lastDrawnNum.contents);
+          }));
+    removeWinners(boards.contents);
   };
   var s$1 = drawOrder.contents.pop();
-  lastDrawnNum = s$1 !== undefined ? s$1 : "-1";
-  playRound(lastDrawnNum, boards.contents);
-  console.log(parseResults(Caml_array.get(boards.contents, 0), lastDrawnNum));
+  lastDrawnNum.contents = s$1 !== undefined ? s$1 : "-1";
+  playRound(lastDrawnNum.contents, boards.contents);
+  console.log(boards.contents, parseResults(Caml_array.get(boards.contents, 0), lastDrawnNum.contents));
   console.log("================\n");
   
 }
@@ -175,6 +192,7 @@ exports.parseBoards = parseBoards;
 exports.markBoard = markBoard;
 exports.transpose = transpose;
 exports.checkWinner = checkWinner;
+exports.removeWinners = removeWinners;
 exports.playRound = playRound;
 exports.parseResults = parseResults;
 exports.partOne = partOne;
