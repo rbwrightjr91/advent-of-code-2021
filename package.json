@@ -12,7 +12,9 @@
     "day-03": "node src/D03BinaryDiag.bs.js data/03/input.txt",
     "day-03:test": "node src/D03BinaryDiag.bs.js data/03/test-input.txt",
     "day-04": "node src/D04Bingo.bs.js data/04/input.txt",
-    "day-04:test": "node src/D04Bingo.bs.js data/04/test-input.txt"
+    "day-04:test": "node src/D04Bingo.bs.js data/04/test-input.txt",
+    "day-05": "node src/D05HydrothermalVenture.bs.js data/05/input.txt",
+    "day-05:test": "node src/D05HydrothermalVenture.bs.js data/05/test-input.txt"
   },
   "keywords": [
     "rescript"
