@@ -48,12 +48,12 @@ function drawHznLine(hashMap, l) {
       l.begin.x,
       l.end.x
     ].sort();
-  for(var i = Caml_array.get(sorted, 0) ,i_finish = Caml_array.get(sorted, 1); i <= i_finish; ++i){
-    var n = Belt_HashMapString.get(hashMap, "x:" + i + ",y:" + y);
+  for(var x = Caml_array.get(sorted, 0) ,x_finish = Caml_array.get(sorted, 1); x <= x_finish; ++x){
+    var n = Belt_HashMapString.get(hashMap, "x:" + x + ",y:" + y);
     if (n !== undefined) {
-      Belt_HashMapString.set(hashMap, "x:" + i + ",y:" + y, n + 1 | 0);
+      Belt_HashMapString.set(hashMap, "x:" + x + ",y:" + y, n + 1 | 0);
     } else {
-      Belt_HashMapString.set(hashMap, "x:" + i + ",y:" + y, 1);
+      Belt_HashMapString.set(hashMap, "x:" + x + ",y:" + y, 1);
     }
   }
   
@@ -65,12 +65,12 @@ function drawVrtLine(hashMap, l) {
       l.begin.y,
       l.end.y
     ].sort();
-  for(var i = Caml_array.get(sorted, 0) ,i_finish = Caml_array.get(sorted, 1); i <= i_finish; ++i){
-    var n = Belt_HashMapString.get(hashMap, "x:" + x + ",y:" + i);
+  for(var y = Caml_array.get(sorted, 0) ,y_finish = Caml_array.get(sorted, 1); y <= y_finish; ++y){
+    var n = Belt_HashMapString.get(hashMap, "x:" + x + ",y:" + y);
     if (n !== undefined) {
-      Belt_HashMapString.set(hashMap, "x:" + x + ",y:" + i, n + 1 | 0);
+      Belt_HashMapString.set(hashMap, "x:" + x + ",y:" + y, n + 1 | 0);
     } else {
-      Belt_HashMapString.set(hashMap, "x:" + x + ",y:" + i, 1);
+      Belt_HashMapString.set(hashMap, "x:" + x + ",y:" + y, 1);
     }
   }
   

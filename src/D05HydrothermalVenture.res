@@ -40,10 +40,10 @@ let parseLine = pointString => {
 let drawHznLine = (hashMap, l) => {
   let y = l.begin.y
   let sorted = [l.begin.x, l.end.x]->Js.Array2.sortInPlace
-  for i in sorted[0] to sorted[1] {
-    switch hashMap->Belt.HashMap.String.get(j`x:$i,y:$y`) {
-    | Some(n) => hashMap->Belt.HashMap.String.set(j`x:$i,y:$y`, n + 1)
-    | None => hashMap->Belt.HashMap.String.set(j`x:$i,y:$y`, 1)
+  for x in sorted[0] to sorted[1] {
+    switch hashMap->Belt.HashMap.String.get(j`x:$x,y:$y`) {
+    | Some(n) => hashMap->Belt.HashMap.String.set(j`x:$x,y:$y`, n + 1)
+    | None => hashMap->Belt.HashMap.String.set(j`x:$x,y:$y`, 1)
     }
   }
 }
@@ -51,10 +51,10 @@ let drawHznLine = (hashMap, l) => {
 let drawVrtLine = (hashMap, l) => {
   let x = l.begin.x
   let sorted = [l.begin.y, l.end.y]->Js.Array2.sortInPlace
-  for i in sorted[0] to sorted[1] {
-    switch hashMap->Belt.HashMap.String.get(j`x:$x,y:$i`) {
-    | Some(n) => hashMap->Belt.HashMap.String.set(j`x:$x,y:$i`, n + 1)
-    | None => hashMap->Belt.HashMap.String.set(j`x:$x,y:$i`, 1)
+  for y in sorted[0] to sorted[1] {
+    switch hashMap->Belt.HashMap.String.get(j`x:$x,y:$y`) {
+    | Some(n) => hashMap->Belt.HashMap.String.set(j`x:$x,y:$y`, n + 1)
+    | None => hashMap->Belt.HashMap.String.set(j`x:$x,y:$y`, 1)
     }
   }
 }
